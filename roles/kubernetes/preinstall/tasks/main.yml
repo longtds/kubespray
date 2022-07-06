@@ -57,6 +57,7 @@
 - import_tasks: 0070-system-packages.yml
   when:
     - not dns_late
+    - download_run_once
   tags:
     - bootstrap-os
 

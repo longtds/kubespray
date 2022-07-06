@@ -1,4 +1,51 @@
 ---
+# ----------------------------------------------------
+# ------------------自定义操作-------------------------
+# ----------------------------------------------------
+# overwrite roles/download/defaults/main.yml
+
+# First configure "download_force_cache: false" and "download_run_once: true" for downloading offline cache
+# Then configure "download_force_cache: false" and "download_run_once: true" for offline deployment
+download_force_cache: true
+download_run_once: false
+download_validate_certs: false
+
+# Use mirror source repositories
+gcr_image_repo: "gcr.lank8s.cn"
+kube_image_repo: "lank8s.cn"
+docker_image_repo: "docker.io"
+quay_image_repo: "quay.io"
+github_image_repo: "ghcr.io"
+
+# Download URLs
+# The github proxy is used to download the release file
+kubelet_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version }}/bin/linux/{{ image_arch }}/kubelet"
+kubectl_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version }}/bin/linux/{{ image_arch }}/kubectl"
+kubeadm_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kubeadm_version }}/bin/linux/{{ image_arch }}/kubeadm"
+etcd_download_url: "https://gh.api.99988866.xyz/https://github.com/etcd-io/etcd/releases/download/{{ etcd_version }}/etcd-{{ etcd_version }}-linux-{{ image_arch }}.tar.gz"
+cni_download_url: "https://gh.api.99988866.xyz/https://github.com/containernetworking/plugins/releases/download/{{ cni_version }}/cni-plugins-linux-{{ image_arch }}-{{ cni_version }}.tgz"
+calicoctl_download_url: "https://gh.api.99988866.xyz/https://github.com/projectcalico/calicoctl/releases/download/{{ calico_ctl_version }}/calicoctl-linux-{{ image_arch }}"
+calicoctl_alternate_download_url: "https://gh.api.99988866.xyz/https://github.com/projectcalico/calico/releases/download/{{ calico_ctl_version }}/calicoctl-linux-{{ image_arch }}"
+calico_crds_download_url: "https://gh.api.99988866.xyz/https://github.com/projectcalico/calico/archive/{{ calico_version }}.tar.gz"
+crictl_download_url: "https://gh.api.99988866.xyz/https://github.com/kubernetes-sigs/cri-tools/releases/download/{{ crictl_version }}/crictl-{{ crictl_version }}-{{ ansible_system | lower }}-{{ image_arch }}.tar.gz"
+helm_download_url: "https://get.helm.sh/helm-{{ helm_version }}-linux-{{ image_arch }}.tar.gz"
+runc_download_url: "https://gh.api.99988866.xyz/https://github.com/opencontainers/runc/releases/download/{{ runc_version }}/runc.{{ image_arch }}"
+crun_download_url: "https://gh.api.99988866.xyz/https://github.com/containers/crun/releases/download/{{ crun_version }}/crun-{{ crun_version }}-linux-{{ image_arch }}"
+youki_download_url: "https://gh.api.99988866.xyz/https://github.com/containers/youki/releases/download/v{{ youki_version }}/youki_v{{ youki_version | regex_replace('\\.', '_') }}_linux.tar.gz"
+kata_containers_download_url: "https://gh.api.99988866.xyz/https://github.com/kata-containers/kata-containers/releases/download/{{ kata_containers_version }}/kata-static-{{ kata_containers_version }}-{{ ansible_architecture }}.tar.xz"
+# gVisor only supports amd64 and uses x86_64 to in the download link
+gvisor_runsc_download_url: "https://storage.googleapis.com/gvisor/releases/release/{{ gvisor_version }}/{{ ansible_architecture }}/runsc"
+gvisor_containerd_shim_runsc_download_url: "https://storage.googleapis.com/gvisor/releases/release/{{ gvisor_version }}/{{ ansible_architecture }}/containerd-shim-runsc-v1"
+nerdctl_download_url: "https://gh.api.99988866.xyz/https://github.com/containerd/nerdctl/releases/download/v{{ nerdctl_version }}/nerdctl-{{ nerdctl_version }}-{{ ansible_system | lower }}-{{ image_arch }}.tar.gz"
+krew_download_url: "https://gh.api.99988866.xyz/https://github.com/kubernetes-sigs/krew/releases/download/{{ krew_version }}/krew-{{ host_os }}_{{ image_arch }}.tar.gz"
+containerd_download_url: "https://gh.api.99988866.xyz/https://github.com/containerd/containerd/releases/download/v{{ containerd_version }}/containerd-{{ containerd_version }}-linux-{{ image_arch }}.tar.gz"
+cri_dockerd_download_url: "https://gh.api.99988866.xyz/https://github.com/Mirantis/cri-dockerd/releases/download/{{ cri_dockerd_version }}/cri-dockerd-{{ cri_dockerd_version }}-linux-{{ image_arch }}.tar.gz"
+
+# ----------------------------------------------------
+# --------------------自定义操作-----------------------
+# ----------------------------------------------------
+
+
 ## Directory where the binaries will be installed
 bin_dir: /usr/local/bin
 
