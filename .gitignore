@@ -5,6 +5,7 @@
 temp
 .idea
 .tox
+.gitpod.yml
 .cache
 *.bak
 *.tfstate
