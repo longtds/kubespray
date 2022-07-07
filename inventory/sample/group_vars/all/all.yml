@@ -6,8 +6,8 @@
 
 # First configure "download_force_cache: false" and "download_run_once: true" for downloading offline cache
 # Then configure "download_force_cache: false" and "download_run_once: true" for offline deployment
-download_force_cache: true
-download_run_once: false
+download_force_cache: false
+download_run_once: true
 download_validate_certs: false
 
 # Use mirror source repositories
